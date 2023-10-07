@@ -3,14 +3,16 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "PUBLIC_ENV=development astro dev",
+    "build:production": "PUBLIC_ENV=production astro build",
+    "build:preview": "PUBLIC_ENV=preview astro build",
     "start": "astro dev",
-    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^5.0.2",
     "@storyblok/astro": "^3.0.1",
     "astro": "^3.2.2",
     "tailwindcss": "^3.3.3",
