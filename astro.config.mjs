@@ -12,8 +12,9 @@ export default defineConfig({
     bridge: process.env.PUBLIC_ENV !== 'production',
     accessToken: env.STORYBLOK_TOKEN,
     components: {
-      hero: 'storyblok/hero',
-      Page: 'storyblok/page'
+      blogPost: 'storyblok/BlogPost',
+      blogPostList: 'storyblok/BlogPostList',
+      page: 'storyblok/Page',
     },
     apiOptions: {
       // Choose your Storyblok space region
