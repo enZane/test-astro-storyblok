@@ -3,6 +3,23 @@ import { useStoryblokApi } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 import Layout from "../layouts/Layout.astro";
 
+export async function getStaticPaths() {
+  const sbApi = useStoryblokApi();
+
+  const { data } = await sbApi.get("cdn/stories", {
+    version: import.meta.env.DEV ? "draft" : "published",
+  });
+
+  const stories = Object.values(data.stories);
+
+  return stories.map((story) => {
+    const slug = story.full_slug.replace(/^\/|\/$/g, "");
+    return {
+      params: { slug },
+    };
+  });
+}
+
 const storyblokApi = useStoryblokApi();
 const slug = Astro.params.slug;
 let content;
@@ -11,7 +28,6 @@ try {
   const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
     version: import.meta.env.DEV ? "draft" : "published",
   });
-  console.log(data);
   content = data.story.content;
   title = data.story.name;
 } catch (error) {
@@ -19,6 +35,6 @@ try {
 }
 ---
 
-<Layout title={title ? `DuranHub - ${title}` : 'DuranHub'}>
+<Layout title={title ? `DuranHub - ${title}` : "DuranHub"}>
   <StoryblokComponent blok={content} />
 </Layout>

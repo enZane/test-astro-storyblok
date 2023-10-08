@@ -17,8 +17,7 @@ export default defineConfig({
       page: 'storyblok/Page',
     },
     apiOptions: {
-      // Choose your Storyblok space region
-      region: 'us' // optional,  or 'eu' (default)
+      region: 'us'
     }
   }), tailwind()],
   output: process.env.PUBLIC_ENV === 'preview' ? 'server' : 'static',
