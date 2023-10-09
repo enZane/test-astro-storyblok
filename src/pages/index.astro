@@ -1,3 +1,21 @@
 ---
-return Astro.redirect("/home");
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+import Layout from "../layouts/Layout.astro";
+import { useStoryblokApi } from "@storyblok/astro";
+const isProd = import.meta.env.PUBLIC_ENV;
+
+if (isProd !== "production") {
+  return Astro.redirect("/home");
+}
+
+const storyblokApi = useStoryblokApi();
+const { data } = await storyblokApi.get("cdn/stories/home", {
+  version: import.meta.env.DEV ? "draft" : "published",
+});
+const content = data.story.content;
+const title = data.story.name;
 ---
+
+<Layout title={title ? `DuranHub - ${title}` : "DuranHub"}>
+  <StoryblokComponent blok={content} />
+</Layout>

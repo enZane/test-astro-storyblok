@@ -10,7 +10,9 @@ export async function getStaticPaths() {
     version: import.meta.env.DEV ? "draft" : "published",
   });
 
-  const stories = Object.values(data.stories);
+  const stories = Object.values(data.stories).filter(
+    (story) => story.full_slug !== "home"
+  );
 
   return stories.map((story) => {
     const slug = story.full_slug.replace(/^\/|\/$/g, "");
