@@ -1,0 +1,17 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+const ALIGNS: Record<string, string> = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
+};
+
+const { blok } = Astro.props as { blok: { align: string; Text: string } };
+console.log(blok);
+console.log(Astro.props);
+
+const align = ALIGNS[blok.align] || ALIGNS.left;
+---
+
+<h2 class={`w-full text-2xl font-bold ${align}`} {...storyblokEditable(blok)}>{blok.Text}</h2>

@@ -10,10 +10,12 @@ export default defineConfig({
   integrations: [storyblok({
     bridge: process.env.PUBLIC_ENV === 'preview' || process.env.PUBLIC_ENV === 'development',
     accessToken: env.STORYBLOK_TOKEN,
+    enableFallbackComponent: true,
     components: {
       blogPost: 'storyblok/BlogPost',
       blogPostList: 'storyblok/BlogPostList',
       page: 'storyblok/Page',
+      title: 'storyblok/Title',
     },
     apiOptions: {
       region: 'us'
