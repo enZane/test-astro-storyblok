@@ -5,11 +5,10 @@ import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 const env = loadEnv("", process.cwd(), 'STORYBLOK');
 
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [storyblok({
-    bridge: process.env.PUBLIC_ENV !== 'production',
+    bridge: process.env.PUBLIC_ENV === 'preview' || process.env.PUBLIC_ENV === 'development',
     accessToken: env.STORYBLOK_TOKEN,
     components: {
       blogPost: 'storyblok/BlogPost',

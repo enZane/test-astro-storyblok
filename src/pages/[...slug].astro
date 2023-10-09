@@ -28,7 +28,7 @@ let content;
 let title;
 try {
   const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
-    version: import.meta.env.DEV ? "draft" : "published",
+    version: import.meta.env.PUBLIC_ENV === 'preview' ? "draft" : "published",
   });
   content = data.story.content;
   title = data.story.name;

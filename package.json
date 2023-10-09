@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "PUBLIC_ENV=dev astro dev",
+    "dev": "PUBLIC_ENV=preview astro dev",
     "build:production": "PUBLIC_ENV=production astro build",
     "build:preview": "PUBLIC_ENV=preview astro build",
     "start": "astro dev",
